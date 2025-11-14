@@ -1,0 +1,6 @@
+FROM python:3.11-slim
+WORKDIR /app
+COPY apps/worker/pyproject.toml apps/worker/pip.lock ./
+RUN pip install -r apps/worker/pip.lock
+COPY apps/worker .
+CMD ["python","worker.py","--dev-watch"]
