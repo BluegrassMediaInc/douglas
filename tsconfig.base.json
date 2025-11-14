@@ -1,0 +1,42 @@
+{
+    // Root tsconfig – extended by each package
+    "$schema": "https://json.schemastore.org/tsconfig",
+    "compilerOptions": {
+      /* Build ---------------------------------------------------- */
+      "target": "ES2022",              // modern Node + browsers
+      "module": "commonjs",            // API runtime; Next.js overrides
+      "moduleResolution": "node",
+      "outDir": "dist",
+      "rootDir": ".",                  // each package narrows with its own tsconfig
+      "baseUrl": ".",                  // allow absolute imports via "paths"
+  
+      /* Strictness ---------------------------------------------- */
+      "strict": true,
+      "noImplicitAny": true,
+      "noImplicitReturns": true,
+      "noFallthroughCasesInSwitch": true,
+  
+      /* Interop -------------------------------------------------- */
+      "esModuleInterop": true,         // enables `import express from "express"`
+      "allowSyntheticDefaultImports": true,
+      "resolveJsonModule": true,       // allows `import data from './foo.json'`
+  
+      /* Paths (example) ----------------------------------------- */
+      "paths": {
+        "@web/*": ["apps/web/*"],
+        "@api/*": ["apps/api/*"]
+      },
+  
+      /* JSX / React --------------------------------------------- */
+      "jsx": "preserve",               // Next.js config will set "react-jsx"
+      "types": ["node"],              // node stdlib typings
+  
+      /* Emit helpers -------------------------------------------- */
+      "importHelpers": true,
+      "skipLibCheck": true
+    },
+  
+    /* Exclude generated folders so IDE stays fast -------------- */
+    "exclude": ["**/dist", "**/.next", "**/coverage", "**/node_modules"]
+  }
+  

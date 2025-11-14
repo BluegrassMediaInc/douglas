@@ -1,0 +1,22 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+
+  "functions": {
+    "apps/api/dist/index.js": {
+      "maxDuration": 800
+    },
+    "apps/worker/index.py": {
+      "runtime": "python3.11",
+      "maxDuration": 800
+    }
+  },
+
+  "crons": [
+    { "path": "/worker", "schedule": "* * * * *" }
+  ],
+
+  "routes": [
+    { "src": "/api/(.*)", "dest": "apps/api/dist/index.js" },
+    { "src": "/worker",   "dest": "apps/worker/index.py"   }
+  ]
+}
